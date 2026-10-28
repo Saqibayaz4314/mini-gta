@@ -1,0 +1,438 @@
+.game-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #aac0bc;
+}
+.game-shell > div:first-child {
+  position: absolute !important;
+  inset: 0;
+}
+.hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.minimal-hud {
+  background: none;
+}
+.minimap {
+  position: absolute;
+  left: 28px;
+  bottom: 28px;
+  width: 192px;
+  height: 172px;
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid #e7efdfbb;
+  border-radius: 8px;
+  background: #334b48;
+  box-shadow: 0 3px 22px #10292655;
+  pointer-events: auto;
+}
+.minimap svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.map-north {
+  position: absolute;
+  right: 8px;
+  top: 7px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  background: #18332de8;
+  border-radius: 3px;
+  color: #edf3e3;
+  font-size: 11px;
+  font-weight: 700;
+}
+.minimal-speed {
+  position: absolute;
+  right: 32px;
+  bottom: 28px;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  color: #fff8e9;
+  text-shadow: 0 2px 12px #102b28cc;
+  font-variant-numeric: tabular-nums;
+}
+.minimal-speed strong {
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-weight: 600;
+  font-size: 76px;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.minimal-speed > span {
+  font-size: 13px;
+  font-weight: 600;
+}
+.minimal-speed.is-boosting {
+  color: #77eaff;
+  text-shadow: 0 0 16px #219dcfaa;
+}
+.touch-btn-boost {
+  color: #b9f5ff;
+  border-color: #77eaff88;
+  background: linear-gradient(
+    to top,
+    #165e76cc var(--nitro-charge),
+    #102e39dd var(--nitro-charge)
+  );
+}
+.touch-btn-boost.is-boosting {
+  box-shadow: 0 0 16px #77eaff77;
+}
+.pause-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  background: #112723a6;
+  backdrop-filter: blur(8px);
+}
+.pause-card {
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100% - 32px);
+  overflow: auto;
+  padding: 28px;
+  border-radius: 12px;
+  background: #f0eddf;
+  color: #243f38;
+  box-shadow: 0 20px 70px #10251d66;
+}
+.pause-card h2 {
+  margin: 0 0 20px;
+  font-size: 32px;
+  font-weight: 600;
+}
+.pause-card dl {
+  margin: 0 0 22px;
+}
+.pause-card dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 12px;
+}
+.pause-card dt {
+  font-weight: 700;
+}
+.pause-card dd {
+  margin: 0;
+  color: #5b7165;
+  text-align: right;
+}
+.pause-settings {
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid #bac6b9;
+  padding-top: 17px;
+}
+.pause-settings label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pause-settings select {
+  max-width: 170px;
+  background: #e1e5d8;
+  color: #29463c;
+  border: 1px solid #aebead;
+  border-radius: 5px;
+  padding: 7px;
+  font: inherit;
+}
+.resume-button {
+  margin-top: 22px;
+  padding: 12px;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  background: #315c4e;
+  color: #f7f5e6;
+  font-weight: 600;
+  pointer-events: auto;
+}
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #abc2bc;
+  z-index: 20;
+}
+.loading-city {
+  padding: 18px 24px;
+  border-radius: 6px;
+  background: #2c4c40;
+  color: #faf6e6;
+  font-size: 14px;
+}
+.error-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  background: #254641;
+  color: #efe9d7;
+  text-align: center;
+  padding: 30px;
+}
+.error-screen button {
+  padding: 12px 20px;
+  pointer-events: auto;
+}
+.error-screen h1 {
+  font-size: 32px;
+}
+.error-screen p {
+  max-width: 600px;
+}
+.fps-counter {
+  display: none;
+}
+@media (max-width: 700px) {
+  .minimap {
+    left: 16px;
+    bottom: 16px;
+    width: 142px;
+    height: 128px;
+    border-width: 2px;
+  }
+  .minimal-speed {
+    right: 20px;
+    bottom: 20px;
+  }
+  .minimal-speed strong {
+    font-size: 60px;
+  }
+  .minimal-speed > span {
+    font-size: 11px;
+  }
+}
+.touch-hud {
+  display: none;
+  position: absolute;
+  inset: 0;
+  /* Respect iOS safe areas (notch + home indicator) */
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  pointer-events: none;
+  z-index: 20;
+}
+@media (pointer: coarse) {
+  .touch-hud {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: calc(max(env(safe-area-inset-bottom, 0px), 16px) + 24px);
+    padding-left: calc(env(safe-area-inset-left, 0px) + 16px);
+    padding-right: calc(env(safe-area-inset-right, 0px) + 16px);
+  }
+}
+
+/* Left joystick zone — takes up half the screen width */
+.touch-joy-zone {
+  flex: 1;
+  max-width: 50%;
+  align-self: stretch;
+  pointer-events: auto;
+  touch-action: none;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-bottom: 8px;
+}
+
+/* "MOVE" hint text when joystick inactive */
+.touch-joy-hint {
+  font-family: "DM Sans", sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(180, 240, 210, 0.25);
+  user-select: none;
+  padding: 8px 0 0 8px;
+  align-self: flex-start;
+}
+
+/* Floating joystick — spawns at touch origin */
+.touch-joy-floating {
+  position: fixed; /* fixed so coords match clientX/Y */
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Outer ring */
+.touch-joy-ring {
+  position: absolute;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(10, 38, 36, 0.55);
+  border: 2px solid rgba(140, 220, 180, 0.4);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 28px rgba(80, 200, 140, 0.12);
+}
+
+/* Thumb knob — positioned via JS transform */
+.touch-joy-thumb {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle at 38% 38%,
+    rgba(200, 255, 220, 0.8),
+    rgba(80, 180, 130, 0.6)
+  );
+  border: 2px solid rgba(200, 255, 225, 0.5);
+  box-shadow: 0 2px 16px rgba(60, 180, 120, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+/* Right: action buttons */
+.touch-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+.touch-btns--driving {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(52px, 1fr));
+  gap: 8px;
+  align-items: stretch;
+}
+.touch-btn {
+  min-width: 68px;
+  min-height: 56px;
+  border-radius: 10px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #d8f0e4;
+  background: rgba(12, 38, 36, 0.65);
+  border: 1.5px solid rgba(140, 220, 180, 0.28);
+  backdrop-filter: blur(6px);
+  touch-action: manipulation;
+  user-select: none;
+  cursor: pointer;
+  transition:
+    background 0.08s,
+    transform 0.06s,
+    box-shadow 0.08s;
+  pointer-events: auto;
+}
+.touch-btn:active {
+  background: rgba(30, 90, 70, 0.8);
+  transform: scale(0.92);
+  box-shadow: 0 0 14px rgba(80, 220, 140, 0.35);
+}
+.touch-btn-e {
+  background: rgba(25, 70, 50, 0.75);
+  border-color: rgba(100, 200, 150, 0.4);
+  min-width: 84px;
+  font-size: 11px;
+}
+.touch-btn-r {
+  font-size: 20px;
+  min-width: 52px;
+  min-height: 48px;
+}
+.touch-btn-space {
+  background: rgba(50, 30, 10, 0.7);
+  border-color: rgba(240, 180, 80, 0.3);
+  color: #f0d890;
+}
+.touch-btn-b {
+  background: rgba(60, 10, 10, 0.7);
+  border-color: rgba(240, 80, 80, 0.3);
+  color: #f08080;
+}
+
+/* ─── Portrait Rotation Overlay ───────────────────────────────────────────── */
+.portrait-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: rgba(10, 28, 26, 0.96);
+  backdrop-filter: blur(16px);
+  color: #c8ecd8;
+  font-family: "DM Sans", sans-serif;
+  text-align: center;
+  padding: 24px;
+}
+.portrait-overlay p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(200, 240, 220, 0.85);
+}
+.portrait-overlay strong {
+  color: #7fe0b0;
+}
+.portrait-icon {
+  font-size: 52px;
+  animation: rotateHint 2s ease-in-out infinite;
+}
+@keyframes rotateHint {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(90deg);
+  }
+  60% {
+    transform: rotate(90deg);
+  }
+}
+
+.minimap,
+.minimal-speed {
+  z-index: 60;
+}
+.pause-overlay {
+  z-index: 100;
+}
+.loading-overlay {
+  z-index: 110;
+}
+@media (pointer: coarse) {
+  .minimap {
+    bottom: 150px;
+    width: 132px;
+    height: 120px;
+  }
+  .minimal-speed {
+    bottom: 164px;
+  }
+}

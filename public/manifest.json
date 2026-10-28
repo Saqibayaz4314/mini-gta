@@ -1,0 +1,16 @@
+﻿{
+  "name": "Sunset District — Open World",
+  "short_name": "Sunset District",
+  "description": "3D open-world driving sandbox in your browser",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#294b45",
+  "theme_color": "#294b45",
+  "categories": ["games"],
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
